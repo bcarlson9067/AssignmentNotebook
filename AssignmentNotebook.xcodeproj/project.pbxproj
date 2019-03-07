@@ -7,14 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		89408B4E2227020C00616111 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89408B4D2227020C00616111 /* DetailsViewController.swift */; };
 		89EAC634221C71BD0003B154 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EAC633221C71BD0003B154 /* AppDelegate.swift */; };
 		89EAC636221C71BD0003B154 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EAC635221C71BD0003B154 /* ViewController.swift */; };
 		89EAC639221C71BD0003B154 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89EAC637221C71BD0003B154 /* Main.storyboard */; };
 		89EAC63B221C71C20003B154 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89EAC63A221C71C20003B154 /* Assets.xcassets */; };
 		89EAC63E221C71C20003B154 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89EAC63C221C71C20003B154 /* LaunchScreen.storyboard */; };
+		89EAC646221C71DA0003B154 /* Assingment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EAC645221C71DA0003B154 /* Assingment.swift */; };
+		89FB52572225AB200054AB71 /* AssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FB52562225AB200054AB71 /* AssignmentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		89408B4D2227020C00616111 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		89EAC630221C71BD0003B154 /* AssignmentNotebook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AssignmentNotebook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89EAC633221C71BD0003B154 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89EAC635221C71BD0003B154 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +26,8 @@
 		89EAC63A221C71C20003B154 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89EAC63D221C71C20003B154 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89EAC63F221C71C20003B154 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89EAC645221C71DA0003B154 /* Assingment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assingment.swift; sourceTree = "<group>"; };
+		89FB52562225AB200054AB71 /* AssignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +44,8 @@
 		89EAC627221C71BD0003B154 = {
 			isa = PBXGroup;
 			children = (
+				89408B4D2227020C00616111 /* DetailsViewController.swift */,
+				89EAC645221C71DA0003B154 /* Assingment.swift */,
 				89EAC632221C71BD0003B154 /* AssignmentNotebook */,
 				89EAC631221C71BD0003B154 /* Products */,
 			);
@@ -57,6 +65,7 @@
 				89EAC633221C71BD0003B154 /* AppDelegate.swift */,
 				89EAC635221C71BD0003B154 /* ViewController.swift */,
 				89EAC637221C71BD0003B154 /* Main.storyboard */,
+				89FB52562225AB200054AB71 /* AssignmentViewController.swift */,
 				89EAC63A221C71C20003B154 /* Assets.xcassets */,
 				89EAC63C221C71C20003B154 /* LaunchScreen.storyboard */,
 				89EAC63F221C71C20003B154 /* Info.plist */,
@@ -136,7 +145,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				89EAC636221C71BD0003B154 /* ViewController.swift in Sources */,
+				89FB52572225AB200054AB71 /* AssignmentViewController.swift in Sources */,
+				89EAC646221C71DA0003B154 /* Assingment.swift in Sources */,
 				89EAC634221C71BD0003B154 /* AppDelegate.swift in Sources */,
+				89408B4E2227020C00616111 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,7 +295,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QB6F96R42D;
 				INFOPLIST_FILE = AssignmentNotebook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -300,7 +314,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QB6F96R42D;
 				INFOPLIST_FILE = AssignmentNotebook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
