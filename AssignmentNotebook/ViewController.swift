@@ -12,23 +12,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableView: UITableView!
     
     var assignments: [Assignment] = []
-    var assignmentTitle: String = " "
-    var assignmentDueDate: Date? = nil
-    var retrievedArray: [Assignment] = []
-    var eventNumber = 0
-    var sentAssignment: Assignment = Assignment(title: " ", date: " ", assignmentClass: " ")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        
-        let assignment1 = Assignment(title: "math bookwork", date: "04/16/19, 9:30", assignmentClass: "Calc 3")
-        let assignment2 = Assignment(title: "read The Invisible Man", date: "03/16/19, 9:30", assignmentClass: "AP Lit")
-        let assignment3 = Assignment(title: "physics problem set 9.2", date: "04/16/19, 11:59", assignmentClass: "AP Physics C")
-        assignments = [assignment1, assignment2, assignment3]
-        retrievedArray = assignments
-        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,56 +45,55 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if editingStyle == .delete {
             assignments.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            saveAssignments()
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        eventNumber += 1
-        var decodedArray: [Assignment] = []
-        if eventNumber > 1 {
-            if let object = UserDefaults.standard.array(forKey: "array"){
-                for (number, assignment) in object.enumerated() {
-                    if let object = UserDefaults.standard.data(forKey: "\(number)"){
-                        if let objectDecoded = try?JSONDecoder().decode(Assignment.self, from: object) as Assignment {
-                            decodedArray.append(objectDecoded)
-                            assignments = decodedArray
-                        }
+        retrieveAssignments()
+        var retrievedAssignment: Assignment
+        if let object = UserDefaults.standard.data(forKey: "newAssignment"){
+            if let objectDecoded = try?JSONDecoder().decode(Assignment.self, from: object) as Assignment {
+                if objectDecoded.title != "" {
+                    retrievedAssignment = objectDecoded
+                    if assignments.contains(where: { $0.title == "\(objectDecoded.title)" }) == false {
+                        assignments.append(retrievedAssignment)
                     }
                 }
             }
         }
-        
-        var retrievedAssignment: Assignment
-        if let object = UserDefaults.standard.data(forKey: "newAssignment"){
-            if let objectDecoded = try?JSONDecoder().decode(Assignment.self, from: object) as Assignment {
-                retrievedAssignment = objectDecoded
-                assignments.append(retrievedAssignment)
+        tableView.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if assignments.count != 0 {
+            saveAssignments()
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detailsSegue" {
+            let nvc = segue.destination as! DetailsViewController
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let sentAssignment = assignments[indexPath.row]
+                print(sentAssignment.title)
+                print(sentAssignment.date)
+                print(sentAssignment.assignmentClass)
+                nvc.passedAssignment = sentAssignment
+            }
+        }
+    }
+    func saveAssignments() {
+        if let encoded = try? JSONEncoder().encode(assignments) {
+            UserDefaults.standard.set(encoded, forKey: "Assignments")
+        }
+    }
+    func retrieveAssignments() {
+        if let object = UserDefaults.standard.data(forKey: "Assignments"){
+            if let objectDecoded = try?JSONDecoder().decode([Assignment].self, from: object) as [Assignment] {
+                assignments = objectDecoded
                 tableView.reloadData()
             }
         }
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        var encodedArray: [Data] = []
-        for (number, assignment) in assignments.enumerated() {
-            if let encoded = try?JSONEncoder().encode(assignment) {
-                UserDefaults.standard.set(encoded, forKey: "\(number)")
-                encodedArray.append(encoded)
-            }
-        }
-        UserDefaults.standard.set(encodedArray, forKey: "array")
-    }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "detailsSegue" {
-//            let nvc = segue.destination as! DetailsViewController
-//            if let indexPath = tableView.indexPathForSelectedRow {
-//                sentAssignment = assignments[indexPath.row]
-//                print(sentAssignment.title)
-//                print(sentAssignment.date)
-//                print(sentAssignment.assignmentClass)
-//                nvc.passedAssignment = sentAssignment
-//            }
-//        }
-//    }
 }

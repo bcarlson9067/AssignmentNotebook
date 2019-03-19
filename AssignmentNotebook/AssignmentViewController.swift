@@ -29,8 +29,8 @@ class AssignmentViewController: UIViewController {
         }
     }
     override func viewWillDisappear(_ animated: Bool) {
-        if let encoded = try?JSONEncoder().encode(newAssignment) {
-            UserDefaults.standard.set(encoded, forKey: "newAssignment")
+            if let encoded = try?JSONEncoder().encode(newAssignment) {
+                UserDefaults.standard.set(encoded, forKey: "newAssignment")
         }
     }
     @IBAction func datePickerChanged(_ sender: Any) {
@@ -38,7 +38,5 @@ class AssignmentViewController: UIViewController {
         dateFormatter.dateStyle = DateFormatter.Style.short
         dateFormatter.timeStyle = DateFormatter.Style.short
         date = dateFormatter.string(from: datePicker.date)
-        print(date)
     }
-    
 }
